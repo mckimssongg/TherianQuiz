@@ -1,0 +1,275 @@
+:root {
+    --color-earth: #4A3C31;
+    --color-forest: #2C4A3B;
+    --color-night: #1A1F2C;
+    --color-water: #2B4C5E;
+    --color-gold: #C5A059;
+    --color-light: #F4F1EA;
+    --color-stone: #8B8A85;
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    
+    --transition-speed: 0.6s;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-night);
+    color: var(--color-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Dynamic Background using pseudo-elements for mesh gradient feel */
+#background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 30%, rgba(44, 74, 59, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(74, 60, 49, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(26, 31, 44, 1) 0%, rgba(10, 12, 18, 1) 100%);
+    transition: background var(--transition-speed) ease;
+}
+
+#background-layer.phase2 {
+    background: radial-gradient(circle at 80% 20%, rgba(43, 76, 94, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(197, 160, 89, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(26, 31, 44, 1) 0%, rgba(10, 12, 18, 1) 100%);
+}
+
+#app {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.section.active {
+    display: block;
+    animation: fadeUpIn var(--transition-speed) forwards;
+}
+
+@keyframes fadeUpIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.content-box p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-light);
+}
+
+.primary-btn, .secondary-btn {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.primary-btn {
+    background-color: var(--color-gold);
+    color: var(--color-night);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+}
+
+.primary-btn:hover {
+    background-color: #d8b672;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--color-gold);
+    border: 1px solid var(--color-gold);
+}
+
+.secondary-btn:hover {
+    background-color: rgba(197, 160, 89, 0.1);
+}
+
+/* Quiz Specifics */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-gold);
+    transition: width 0.4s ease;
+}
+
+#question-text {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    color: var(--color-light);
+    line-height: 1.4;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: opacity 0.4s ease;
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 2rem;
+    color: var(--color-light);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.option-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-gold);
+    transform: translateX(5px);
+}
+
+.option-btn:active {
+    transform: translateX(2px);
+    background: rgba(197, 160, 89, 0.2);
+}
+
+/* Results Specifics */
+.result-box hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+.result-highlight {
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-light);
+    margin-bottom: 1rem;
+}
+
+#compatibility-desc {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.icon-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 50%;
+    background: rgba(197, 160, 89, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+}
+
+.icon-container svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #app {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .content-box {
+        padding: 1.5rem;
+    }
+    
+    .option-btn {
+        padding: 1.2rem;
+        font-size: 1rem;
+    }
+}
