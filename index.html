@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quiz Therian: Descubre tu esencia animal y tu compatibilidad. Actividad rompehielos para el Día del Amor y la Amistad.">
     <title>Quiz Therian: Tu Esencia y Tu Compatibilidad</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -11,54 +12,58 @@
     <div id="background-layer"></div>
     
     <main id="app">
-        <!-- Intro Section -->
-        <section id="intro" class="section active">
+        <!-- ====== Intro ====== -->
+        <section id="intro" class="section active" aria-label="Introducción">
             <header>
                 <h1>Quiz Therian</h1>
                 <h2>Tu Esencia y Tu Compatibilidad</h2>
             </header>
             <article class="content-box">
-                <p>Una identidad Therian es una conexión espiritual o psicológica profunda e involuntaria con un animal no humano. No es un juego ni una elección, es parte de quién eres.</p>
-                <p>Este quiz te ayudará a explorar tu conexión y a descubrir qué esencia animal resuena más contigo, además de sugerirte con qué otras esencias eres más compatible.</p>
+                <p>¿Alguna vez has sentido una conexión especial con la naturaleza o con algún animal? Este quiz explora esa conexión de una forma divertida y significativa.</p>
+                <p>Responde con tu instinto — no hay respuestas correctas ni incorrectas. Descubrirás qué tipo de esencia animal resuena más contigo, y con qué tipo de personas eres más compatible.</p>
+                <p class="intro-subtitle">Actividad rompehielos — Día del Amor y la Amistad 💛</p>
                 <button id="start-btn" class="primary-btn">Iniciar el Viaje</button>
             </article>
         </section>
 
-        <!-- Quiz Section -->
-        <section id="quiz" class="section">
+        <!-- ====== Quiz ====== -->
+        <section id="quiz" class="section" aria-label="Preguntas del Quiz">
             <header>
                 <h2 id="phase-title">Parte 1: Descubriendo tu Theriotype</h2>
                 <div class="progress-bar"><div id="progress" style="width: 0%;"></div></div>
+                <p id="question-counter" class="question-counter"></p>
             </header>
             <article id="question-container" class="content-box">
+                <div id="question-image-wrapper" class="question-image-wrapper" style="display:none;"></div>
                 <h3 id="question-text"></h3>
                 <div id="options-container" class="options-grid"></div>
             </article>
         </section>
 
-        <!-- Transition Section -->
-        <section id="transition" class="section">
-            <article class="content-box transition-box">
+        <!-- ====== Transición Parte 1 → Parte 2 ====== -->
+        <section id="transition" class="section" aria-label="Transición a Compatibilidad">
+            <article class="content-box">
                 <h2>El primer ciclo está completo</h2>
-                <p>Has descubierto gran parte de tu esencia. Ahora, descubramos con quién resuena mejor tu espíritu en la naturaleza.</p>
-                <p class="subtitle" style="color: var(--color-gold); font-style: italic; margin-top: 1rem;">Comienza la Parte 2: Compatibilidad Therian</p>
+                <p>Has descubierto gran parte de tu esencia. Ahora, descubramos con quién resuena mejor tu espíritu.</p>
+                <p class="intro-subtitle">Comienza la Parte 2: Compatibilidad</p>
                 <button id="continue-btn" class="primary-btn">Continuar</button>
             </article>
         </section>
 
-        <!-- Results Section -->
-        <section id="results" class="section">
+        <!-- ====== Resultados ====== -->
+        <section id="results" class="section" aria-label="Resultados">
             <header>
                 <h2>Tu Verdadera Naturaleza</h2>
             </header>
             <article class="content-box result-box">
                 <div id="result-icon-container" class="icon-container"></div>
                 <h3 id="theriotype-title"></h3>
+                <div id="result-image-wrapper" class="result-image-wrapper"></div>
                 <p id="theriotype-desc" class="result-highlight"></p>
                 
                 <hr>
 
-                <h3>Tu Resonancia en la Manada</h3>
+                <h3 id="compatibility-title">Tu Resonancia</h3>
                 <p id="compatibility-desc"></p>
 
                 <button id="restart-btn" class="secondary-btn">Volver a Explorar</button>
